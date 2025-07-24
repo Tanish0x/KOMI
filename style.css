@@ -1,0 +1,435 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @font-face {
+  font-family: 'MyCustomFont';
+  src: url('./font/helveticanowdisplay-medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    font-family: sans-serif;
+  }
+
+  /* Lenis Smooth Scrolling CSS */
+html.lenis {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+   pointer-events: none;
+}
+
+.section2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.oval{
+  position: absolute;
+  width: 23vw;
+  height: 87%;
+  background-color: #121212; /* Dark grayish */
+  border-radius: 220px; /* capsule shape */
+  z-index: 0;
+}
+  
+
+.ovalText{
+    position: relative;
+    top: -15%;
+    z-index: 4;
+    font-size: 80px;
+    width: 46vw;
+    line-height: 80px;
+    letter-spacing: -4px;
+    display: block;
+    flex-wrap: wrap;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    word-break: keep-all;     /* Prevent breaking in the middle of words */
+  white-space: normal;
+    hyphens: none; 
+}
+
+.ovalText .char {
+  color: rgba(146, 146, 146, 0.301);
+  transition: color 0.3s ease-out;
+  opacity: 1;
+}
+  /* Full black background initially */
+  .loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* White block to reveal */
+  .reveal {
+    width: 100%;
+    height:0%;
+    background-color: white;
+    transform-origin: center;
+  }
+  
+  /* Main website content hidden at start */
+  .main-content {
+    opacity: 0;
+    visibility: hidden;
+
+    text-align: center;
+  }
+  
+  .center-text, .center-text2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  #mainText,#mainText2, #mainText3{
+    font-family: 'MyCustomFont', sans-serif;
+    font-weight: 540;
+    font-size: 12vw;
+    color: black;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .char {
+    transform-origin: center bottom;
+    transform: translateY(150px);
+    display: inline-block;
+    will-change: transform;
+    opacity: 0;
+  }
+  
+  .center-text, .center-text3{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+  .smallText, .smallText3{
+
+    margin: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+    font-weight:300;
+    font-size: 0.8rem;
+    color: black;
+    overflow: hidden;
+  }
+
+  #T1,#T3{
+    transform:translateY(90px);
+    font-weight:400;
+  }
+
+  #T2, #T4{
+    font-weight:500;
+
+    transform:translateY(-200%);
+  }
+
+ 
+  .smallText2{
+    margin: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+    font-weight:500;
+    font-size: 0.8rem;
+    color: black;
+    overflow: hidden;
+  }
+  .smallText3{
+    margin: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+    font-weight:500;
+    font-size: 0.8rem;
+    color: black;
+    overflow: hidden;
+  }
+
+  #Ta{  
+    transform:translateY(90px);
+  }
+
+  #Tb{
+    transform:translateY(-200%);
+  }
+/* 
+  h1 {
+    font-size: 4em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } */
+
+  .smallText2, .smallText3{
+  opacity: 0;
+}
+
+
+#centerText3{
+  width:600px;
+ display: flex;
+ flex-direction: row;
+}
+
+.main-content {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+    gap: 4rem;
+}
+
+.left-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.left-content h1 {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 3rem;
+    max-width: 500px;
+}
+
+.shop-button {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-bottom: 3rem;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer-text span {
+    margin: 0 0.5rem;
+}
+
+.right-content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    font-size: 0.9rem;
+}
+
+.percentage {
+    position: absolute;
+    bottom: 2rem;
+    right: 0;
+    font-size: 0.9rem;
+}
+
+
+/* main content */
+nav{
+  display: flex;
+  margin: 1.5em;
+  justify-content: space-between;
+  transform: translateY(-50px); /* Initial position above viewport */
+  opacity: 0; /* Initially hidden */
+}
+
+.hero{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'MyCustomFont', sans-serif;
+  background-image: url('./image/hand_white_pod.webp');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-x: 35vw;
+  height: 100vh;
+}
+.section2{
+  background-color: #000;
+  height: 200px;
+}
+.heroText{
+  font-size: 280px;
+  font-weight: 500;
+  line-height: 220px; /* Reduced line height for tighter stacking */
+  margin-left: 180px;
+  display: block; /* Ensure block display for proper stacking */
+} 
+
+/* Specific styling for the first heroText (feel) */
+#heroText1 {
+  margin-top: 50px;
+  margin-bottom: -20px; /* Reduced negative margin to create more space between elements */
+  margin-left: 169px;
+}
+
+/* Specific styling for the second heroText (better) */
+#heroText2 {
+  margin-top: 0;
+  padding-top: 20px; /* Added padding to increase space between elements */
+}
+
+.smallHeroText{
+  font-family: 'MyCustomFont', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  width: 500px;
+  text-align: left;
+  /* padding-left: 20px; */
+  margin-left: 200px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.sofi{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
+  align-items: center;
+  text-align: center;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 570;
+  color: white;
+  background-color: black;
+  height:5vh;
+  width: 6vw;
+  cursor: pointer;
+  transition: .5s ease;
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  opacity: 0; /* Initially hidden for fade-in animation */
+  transform: translateY(20px); /* Initial position for animation */
+}
+
+.sofi:hover{
+  color: black;
+  background-color: rgb(250, 250, 250);
+}
+
+.heroText{
+  opacity: 1; /* Make the parent element visible */
+}
+
+/* Individual characters will be animated by GSAP */
+.heroText .char {
+  opacity: 0;
+}
+
+.main-content{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.section2 {
+  position: relative;
+  z-index: 2; /* Higher than main-content to ensure it stacks on top */
+  background-color: #000;
+  width: 100%;
+  min-height: 100vh; /* Make it at least full height for proper stacking effect */
+}
+
+
+/* Smooth scrolling styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
