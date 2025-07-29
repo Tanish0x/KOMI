@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "path": "ig-comment",
+        "options": {}
+      },
+      "id": "Webhook",
+      "name": "Instagram Comment Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [300, 200],
+      "webhookId": "abc123"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "comment_id",
+              "value": "={{$json[\"entry\"][0][\"changes\"][0][\"value\"][\"comment_id\"]}}"
+            },
+            {
+              "name": "message_text",
+              "value": "Hey 👋 thanks for commenting! Here's the link you asked for: https://yourproduct.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "Set",
+      "name": "Set Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v19.0/{{YOUR_IG_BUSINESS_ID}}/messages",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"recipient\": {\n    \"comment_id\": \"{{$json[\"comment_id\"]}}\"\n  },\n  \"message\": {\n    \"text\": \"{{$json[\"message_text\"]}}\"\n  }\n}"
+      },
+      "id": "SendDM",
+      "name": "Send Instagram DM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [700, 200],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "{{YOUR_CREDENTIAL_ID}}",
+          "name": "MetaGraphAPICred"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Instagram Comment Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Message": {
+      "main": [
+        [
+          {
+            "node": "Send Instagram DM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
