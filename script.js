@@ -6,6 +6,7 @@ const split2 = new SplitType("#mainText2", { type: "chars" });
 const split3 = new SplitType("#mainText3", { type: "chars" });
  const splitOval = new SplitType('.ovalText', { types: 'chars' });
  const splitMod = new SplitType('.scroll-text', { type: 'chars' });
+const splitX = new SplitType(".sec1", { types: "chars" });
  const header1Split = new SplitType(".header-1 h1", {
   type: "chars",
   charsClass: "char",
@@ -674,7 +675,55 @@ gsap.to(".section5 .image", {
   }
 });
 
+//section6 theme change on enter and leave back
+ScrollTrigger.create({
+  trigger: ".section6",
+  start: "bottom 80%",             // when .section6 is about to end
+  endTrigger: ".container",
+  end: "bottom 80%",               // before .container ends
+  onEnter: () => {
+    gsap.to("*", {
+      backgroundColor: "#000",
+      color: "#fff",
+      duration: 0.5
+    });
+  },
+  onLeave: () => {
+    gsap.to("*", {
+      backgroundColor: "#fff",
+      color: "#000",
+      duration: 0.5
+    });
+  },
+  onEnterBack: () => {
+    gsap.to("*", {
+      backgroundColor: "#000",
+      color: "#fff",
+      duration: 0.5
+    });
+  },
+  onLeaveBack: () => {
+    gsap.to("*", {
+      backgroundColor: "#fff",
+      color: "#000",
+      duration: 0.5
+    });
+  },
+  markers: false
+});
 
+gsap.to('.sec1 .char', {
+  color: '#000',
+  stagger: 0.03,
+  duration: 0.5,
+  scrollTrigger: {
+    trigger: '.section7',
+    start: 'top center',
+    toggleActions: 'play none none reverse',
+    markers: true  // Enable to debug triggers
+  },
+  ease: 'power1.out'
+});
 
 
 
