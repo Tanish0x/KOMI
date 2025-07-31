@@ -1241,7 +1241,7 @@ html.lenis {
 
 /* GUI Toggle Button */
 #gui-toggle-btn {
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 10px;
   right: 10px;
