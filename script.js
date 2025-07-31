@@ -418,7 +418,7 @@ gsap.set('.oval', { scale: 1, opacity: 1, mixBlendMode: 'normal', backgroundColo
 gsap.set('.section3', {
   opacity: 0,
   scale: 0.95,
-  y: 20,
+  // y: 20,
   mixBlendMode: 'normal'
 });
 
