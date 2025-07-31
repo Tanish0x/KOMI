@@ -4,10 +4,11 @@ console.log('Initializing SplitType...');
 const split1 = new SplitType("#mainText", { type: "chars" });
 const split2 = new SplitType("#mainText2", { type: "chars" });
 const split3 = new SplitType("#mainText3", { type: "chars" });
- const splitOval = new SplitType('.ovalText', { types: 'chars' });
- const splitMod = new SplitType('.scroll-text', { type: 'chars' });
+const splitOval = new SplitType('.ovalText', { types: 'chars' });
+const splitMod = new SplitType('.scroll-text', { type: 'chars' });
 const splitX = new SplitType(".sec1", { types: "chars" });
- const header1Split = new SplitType(".header-1 h1", {
+const splitY = new SplitType(".sec2", { types: "chars" });
+const header1Split = new SplitType(".header-1 h1", {
   type: "chars",
   charsClass: "char",
 });
@@ -21,7 +22,7 @@ const descriptionSplits = new SplitType(".tooltip .description p", {
   type: "lines",
   linesClass: "line",
 });
- gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 
 // Split hero texts
@@ -37,8 +38,8 @@ let model, currentRotation = 0, modelSize;
 const lenis = new Lenis();
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-    });
+  lenis.raf(time * 1000);
+});
 
 gsap.ticker.lagSmoothing(0);
 
@@ -78,7 +79,7 @@ gsap.to(".reveal", {
               duration: 0.6,
               ease: "power2.out"
             });
-            
+
             // Trigger the heroText1 animation when loader completes and main content is visible
             animateHeroText();
           }
@@ -91,42 +92,42 @@ gsap.to(".reveal", {
 // Function to animate heroText1 and heroText2 with SplitType and stagger
 function animateHeroText() {
   console.log('animateHeroText function called');
-  
+
   // Ensure the splits have been created
   if (!split4 || !split4.chars) {
     console.warn('Split for heroText1 not found');
     console.log('split4:', split4);
     return;
   }
-  
+
   if (!split5 || !split5.chars) {
     console.warn('Split for heroText2 not found');
     console.log('split5:', split5);
     return;
   }
-  
+
   console.log('Both splits found, proceeding with animation');
   console.log('heroText1 chars count:', split4.chars.length);
   console.log('heroText2 chars count:', split5.chars.length);
-  
+
   // Create a timeline for the hero text animations
   const heroTl = gsap.timeline();
-  
+
   // Set initial state for each character in both texts
   gsap.set(split4.chars, {
     y: 100,
     opacity: 0
   });
-  
+
   gsap.set(split5.chars, {
     y: 100,
     opacity: 0
   });
-  
+
   // Animate heroText1 characters with stagger effect
   // Add a minimal delay before starting the animation
-  heroTl.to({}, {duration: 0.2}); // Reduced delay to 0.2 seconds before starting the animation
-  
+  heroTl.to({}, { duration: 0.2 }); // Reduced delay to 0.2 seconds before starting the animation
+
   heroTl.to(split4.chars, {
     y: 0,
     opacity: 1,
@@ -138,7 +139,7 @@ function animateHeroText() {
     duration: 0.8,
     ease: "back.out(1.7)"
   });
-  
+
   // Animate the .sofi button with fade-in effect
   heroTl.to('.sofi', {
     opacity: 1,
@@ -146,7 +147,7 @@ function animateHeroText() {
     duration: 0.6,
     ease: "power2.out"
   }, "-=0.4");
-  
+
   // Add a subtle scale effect after characters appear
   heroTl.to(split4.chars, {
     // scale: 1.05,
@@ -158,7 +159,7 @@ function animateHeroText() {
     duration: 0.4,
     ease: "power1.inOut"
   }, "-=0.3");
-  
+
   // Return to normal scale
   heroTl.to(split4.chars, {
     // scale: 1,
@@ -170,7 +171,7 @@ function animateHeroText() {
     duration: 0.3,
     ease: "power2.out"
   }, "-=0.1");
-  
+
   // Animate heroText2 characters with stagger effect after heroText1 animation
   heroTl.to(split5.chars, {
     y: 0,
@@ -183,7 +184,7 @@ function animateHeroText() {
     duration: 0.8,
     ease: "back.out(1.7)"
   }, "-=0.2"); // Slightly overlap with the end of heroText1 animation
-  
+
   // Add a subtle scale effect for heroText2
   heroTl.to(split5.chars, {
     // scale: 1.05,
@@ -195,7 +196,7 @@ function animateHeroText() {
     duration: 0.4,
     ease: "power1.inOut"
   }, "-=0.3");
-  
+
   // Return heroText2 to normal scale
   heroTl.to(split5.chars, {
     // scale: 1,
@@ -207,7 +208,7 @@ function animateHeroText() {
     duration: 0.3,
     ease: "power2.out"
   }, "-=0.1");
-  
+
   // Animate the smallHeroText to fade in after both hero texts are animated
   heroTl.to('.smallHeroText', {
     opacity: 1,
@@ -231,25 +232,25 @@ tl.to(split1.chars, {
   ease: "back.out(1.7)"
 }, "-=0.5")
 
-.to('.center-text .smallText', {
-  opacity: 1,
-  duration: 0.5,
-  ease: "power1.out"
-}, "-=0.5")
+  .to('.center-text .smallText', {
+    opacity: 1,
+    duration: 0.5,
+    ease: "power1.out"
+  }, "-=0.5")
 
-.to(split1.chars, {
-  y: -50,
-  opacity: 0,
-  stagger: { each: 0.05, from: "end" },
-  duration: 0.5,
-  ease: "power1.in"
-}, "+=0.5")
+  .to(split1.chars, {
+    y: -50,
+    opacity: 0,
+    stagger: { each: 0.05, from: "end" },
+    duration: 0.5,
+    ease: "power1.in"
+  }, "+=0.5")
 
-.to('.center-text .smallText', {
-  opacity: 0,
-  duration: 0.5,
-  ease: "power1.in"
-}, "-=0.5");
+  .to('.center-text .smallText', {
+    opacity: 0,
+    duration: 0.5,
+    ease: "power1.in"
+  }, "-=0.5");
 
 // Second animation
 function playSecondAnimation() {
@@ -336,9 +337,9 @@ function playThirdAnimation() {
 }
 
 lenis.on('scroll', (e) => {
-        currentScroll = e.scroll;
+  currentScroll = e.scroll;
 
-    });
+});
 
 
 // Replace the existing ScrollTrigger code with this enhanced implementation
@@ -386,141 +387,141 @@ gsap.from(".section2", {
 });
 
 
-  // Create a master timeline for section2 animations with clear stages
-  const section2Timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.section2',
-      start: 'top top',
-      end: '+=300%', // Extended scroll range for smoother transition
-      pin: true, // Pin the section during scroll
-      scrub: 1, // Smoother scrubbing
-      markers: false, // Set to true for debugging
-      onEnter: () => {
-        console.log("Entered section2");
-        // Set initial states
-        gsap.set('.ovalText', {opacity: 0, scale: 0.9});
-        gsap.set('.oval', {scale: 1, opacity: 1});
-      },
-      onLeave: () => {
-        console.log("Left section2");
-        // Ensure next section is visible when leaving this section
-        gsap.to('.section3', {opacity: 1, duration: 2, ease: 'power2.out'});
-      }
+// Create a master timeline for section2 animations with clear stages
+const section2Timeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.section2',
+    start: 'top top',
+    end: '+=300%', // Extended scroll range for smoother transition
+    pin: true, // Pin the section during scroll
+    scrub: 1, // Smoother scrubbing
+    markers: false, // Set to true for debugging
+    onEnter: () => {
+      console.log("Entered section2");
+      // Set initial states
+      gsap.set('.ovalText', { opacity: 0, scale: 0.9 });
+      gsap.set('.oval', { scale: 1, opacity: 1 });
+    },
+    onLeave: () => {
+      console.log("Left section2");
+      // Ensure next section is visible when leaving this section
+      gsap.to('.section3', { opacity: 1, duration: 2, ease: 'power2.out' });
     }
-  });
-  
-  // Set initial state for oval, text and section3 - ensures proper initialization before animation
-  gsap.set('.ovalText', {opacity: 0, scale: 0.9, color: '#333'});
-  gsap.set('.ovalText .char', {color: '#333'});
-  // Make oval more visible with higher opacity and normal blend mode initially
-  gsap.set('.oval', {scale: 1, opacity: 1, mixBlendMode: 'normal', backgroundColor: 'rgba(18, 18, 18, 0.9)'});
-  gsap.set('.section3', {
-    opacity: 0,
-    scale: 0.95,
-    y: 20,
-    mixBlendMode: 'normal'
-  });
-  
-  // STEP 1: Initial text fade in
-  section2Timeline.to('.ovalText', {
-    opacity: 1,
-    scale: 1.05,
-    duration: 0.2,
-    ease: 'power1.out'
-  }, 0);
-  
-  // STEP 2: Character-by-character text filling animation with longer stagger
-  // Calculate total duration: stagger * number of characters (assuming ~15 chars) + base duration
-  // This ensures all characters have time to fill before next animation
-  section2Timeline.to('.ovalText .char', {
-    color: 'white',
-    stagger: 0.08, // Increased stagger for longer scroll effect
-    duration: 0.4, // Adjusted duration
-    ease: 'power1.inOut',
-    onComplete: function() {
-      console.log('Character animation complete');
+  }
+});
+
+// Set initial state for oval, text and section3 - ensures proper initialization before animation
+gsap.set('.ovalText', { opacity: 0, scale: 0.9, color: '#333' });
+gsap.set('.ovalText .char', { color: '#333' });
+// Make oval more visible with higher opacity and normal blend mode initially
+gsap.set('.oval', { scale: 1, opacity: 1, mixBlendMode: 'normal', backgroundColor: 'rgba(18, 18, 18, 0.9)' });
+gsap.set('.section3', {
+  opacity: 0,
+  scale: 0.95,
+  y: 20,
+  mixBlendMode: 'normal'
+});
+
+// STEP 1: Initial text fade in
+section2Timeline.to('.ovalText', {
+  opacity: 1,
+  scale: 1.05,
+  duration: 0.2,
+  ease: 'power1.out'
+}, 0);
+
+// STEP 2: Character-by-character text filling animation with longer stagger
+// Calculate total duration: stagger * number of characters (assuming ~15 chars) + base duration
+// This ensures all characters have time to fill before next animation
+section2Timeline.to('.ovalText .char', {
+  color: 'white',
+  stagger: 0.08, // Increased stagger for longer scroll effect
+  duration: 0.4, // Adjusted duration
+  ease: 'power1.inOut',
+  onComplete: function () {
+    console.log('Character animation complete');
+  }
+}, 0); // Start at the beginning of the timeline
+
+// Calculate total character animation duration: stagger * (estimated chars) + duration
+// For ~50 chars with 0.08s stagger = ~4s + 0.4s base duration = ~4.4s total
+const charAnimDuration = 4.4; // Estimated total duration for character animation
+
+// STEP 3: Hold the text filled state for a moment before starting fade out
+// Start this after character filling completes
+section2Timeline.to('.ovalText', {
+  scale: 1.05,
+  opacity: 1,
+  duration: 0.3,
+  ease: 'none'
+}, charAnimDuration); // Start after character animation completes
+
+// STEP 4: Text fade out and zoom effect sequence - starts only after holding period
+// Begin fade out - moved to position after holding period
+section2Timeline.to('.ovalText', {
+  scale: 1.2,
+  opacity: 0.3,
+  duration: 0.15,
+  ease: 'power1.inOut'
+}, charAnimDuration + 0.3); // Start after holding period
+
+// Continue fade out with increased zoom
+section2Timeline.to('.ovalText', {
+  scale: 1.35,
+  opacity: 0,
+  duration: 0.15,
+  ease: 'power2.inOut'
+}, charAnimDuration + 0.45); // Continue sequence
+
+// Complete fade out with final zoom effect
+section2Timeline.to('.ovalText', {
+  scale: 1.5,
+  opacity: 0,
+  duration: 0.25,
+  ease: 'power4.in'
+}, charAnimDuration + 0.6); // Complete sequence
+
+// STEP 5: Expand the oval to reveal content (only after text animation completes)
+// Start after text fade out completes (charAnimDuration + fade duration)
+section2Timeline.to(".oval", {
+  width: "100vw",
+  height: "100vh",
+  borderRadius: "0",
+  duration: 1,
+  ease: "power2.inOut",
+  onUpdate: function () {
+    // Dynamically adjust blend mode during animation
+    if (this.progress() > 0.5) {
+      gsap.set('.oval', { mixBlendMode: 'screen' });
     }
-  }, 0); // Start at the beginning of the timeline
-  
-  // Calculate total character animation duration: stagger * (estimated chars) + duration
-  // For ~50 chars with 0.08s stagger = ~4s + 0.4s base duration = ~4.4s total
-  const charAnimDuration = 4.4; // Estimated total duration for character animation
-  
-  // STEP 3: Hold the text filled state for a moment before starting fade out
-  // Start this after character filling completes
-  section2Timeline.to('.ovalText', {
-    scale: 1.05,
-    opacity: 1,
-    duration: 0.3,
-    ease: 'none'
-  }, charAnimDuration); // Start after character animation completes
-  
-  // STEP 4: Text fade out and zoom effect sequence - starts only after holding period
-  // Begin fade out - moved to position after holding period
-  section2Timeline.to('.ovalText', {
-    scale: 1.2,
-    opacity: 0.3,
-    duration: 0.15,
-    ease: 'power1.inOut'
-  }, charAnimDuration + 0.3); // Start after holding period
-  
-  // Continue fade out with increased zoom
-  section2Timeline.to('.ovalText', {
-    scale: 1.35,
-    opacity: 0,
-    duration: 0.15,
-    ease: 'power2.inOut'
-  }, charAnimDuration + 0.45); // Continue sequence
-  
-  // Complete fade out with final zoom effect
-  section2Timeline.to('.ovalText', {
-    scale: 1.5,
-    opacity: 0,
-    duration: 0.25,
-    ease: 'power4.in'
-  }, charAnimDuration + 0.6); // Complete sequence
-  
-  // STEP 5: Expand the oval to reveal content (only after text animation completes)
-  // Start after text fade out completes (charAnimDuration + fade duration)
-  section2Timeline.to(".oval", {
-    width: "100vw",
-    height: "100vh",
-    borderRadius: "0",
-    duration: 1,
-    ease: "power2.inOut",
-    onUpdate: function() {
-      // Dynamically adjust blend mode during animation
-      if (this.progress() > 0.5) {
-        gsap.set('.oval', {mixBlendMode: 'screen'});
-      }
+  }
+}, charAnimDuration + 0.85); // Start after text fade out completes
+
+// STEP 6: Reveal the section3 content as oval expands
+section2Timeline.to(".section3", {
+  opacity: 1,
+  scale: 1,
+  y: 0,
+  duration: 1.2,
+  ease: "power2.inOut",
+  onUpdate: function () {
+    // Dynamically adjust blend mode during animation
+    if (this.progress() > 0.5) {
+      gsap.set('.section3', { mixBlendMode: 'screen' });
     }
-  }, charAnimDuration + 0.85); // Start after text fade out completes
-  
-  // STEP 6: Reveal the section3 content as oval expands
-  section2Timeline.to(".section3", {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    duration: 1.2,
-    ease: "power2.inOut",
-    onUpdate: function() {
-      // Dynamically adjust blend mode during animation
-      if (this.progress() > 0.5) {
-        gsap.set('.section3', {mixBlendMode: 'screen'});
-      }
-    }
-  }, charAnimDuration + 1.0); // Start slightly after oval begins expanding
+  }
+}, charAnimDuration + 1.0); // Start slightly after oval begins expanding
 
 
 // 4th section three js part//
 
 // Add ScrollTrigger to pin and animate .scroll-text in .section4
-  ScrollTrigger.create({
+ScrollTrigger.create({
   trigger: ".section4",
-    start: "top top",
+  start: "top top",
   end: "+=100%",
-    pin: true,
-    scrub: 1,
+  pin: true,
+  scrub: 1,
   markers: false,
   onUpdate: self => {
     const progress = self.progress;
@@ -618,13 +619,13 @@ const modeltl = gsap.timeline({
     start: 'top top',
     end: '+=300%',
     scrub: true,
-    markers: true,
+    // markers: true,
   }
 });
 
 modeltl.fromTo(
   ".circle-reveal-section",
-  { width: "10vw", height: "10vw", borderRadius: "50%" },
+  { width: "0vw", height: "0vw", borderRadius: "50%" },
   { width: "170vw", height: "170vw", ease: "power2.out", duration: 2 },
   "+=0.3" // delay to wait for text animation
 );
@@ -637,7 +638,7 @@ gsap.to(".circle-reveal-section", {
     trigger: ".section5",
     start: "top center", // adjust as needed
     toggleActions: "play reverse play reverse", // enables reverse on scroll-up
-    markers: true, // enable to debug positions
+    // markers: true, // enable to debug positions
   },
 });
 
@@ -675,62 +676,75 @@ gsap.to(".section5 .image", {
   }
 });
 
-//section6 theme change on enter and leave back
+// Section7 Scroll - triggered char color animation
+gsap.to(".sec1 .char", {
+  color: "#000",
+  stagger: 1,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".section7",
+    start: "top 20%",
+    end: "bottom 60%",
+    scrub: true,
+    // markers: true,
+  },
+});
+gsap.to(".sec2 .char", {
+  color: "#000",
+  stagger: 1,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".section8",
+    start: "top 20%",
+    end: "bottom bottom",
+    scrub: true,
+    // markers: true,
+  },
+});
+
+// Section6 theme change scroll trigger
 ScrollTrigger.create({
   trigger: ".section6",
-  start: "bottom 80%",             // when .section6 is about to end
+  start: "bottom 80%",
   endTrigger: ".container",
-  end: "bottom 80%",               // before .container ends
+  end: "bottom 80%",
   onEnter: () => {
-    gsap.to("*", {
+    gsap.to("body", {
       backgroundColor: "#000",
       color: "#fff",
-      duration: 0.5
+      duration: 0.5,
     });
   },
   onLeave: () => {
-    gsap.to("*", {
+    gsap.to("body", {
       backgroundColor: "#fff",
       color: "#000",
-      duration: 0.5
+      duration: 0.5,
     });
   },
   onEnterBack: () => {
-    gsap.to("*", {
+    gsap.to("body", {
       backgroundColor: "#000",
       color: "#fff",
-      duration: 0.5
+      duration: 0.5,
     });
   },
   onLeaveBack: () => {
-    gsap.to("*", {
+    gsap.to("body", {
       backgroundColor: "#fff",
       color: "#000",
-      duration: 0.5
+      duration: 0.5,
     });
   },
-  markers: false
-});
-
-gsap.to('.sec1 .char', {
-  color: '#000',
-  stagger: 0.03,
-  duration: 0.5,
-  scrollTrigger: {
-    trigger: '.section7',
-    start: 'top center',
-    toggleActions: 'play none none reverse',
-    markers: true  // Enable to debug triggers
-  },
-  ease: 'power1.out'
+  markers: false,
 });
 
 
 
 
 
-  
-  // Global settings object for GUI controls
+
+// Global settings object for GUI controls
 // Global settings object for GUI controls
 const settings = {
   gui: {
@@ -814,361 +828,360 @@ const settings = {
 
 
 {
-// Function to setup GUI controls
-function setupGUI(model, scene, camera, ambient, keyLight, fillLight, rimLight) {
-  // Create GUI instance
-  const gui = new lil.GUI();
-  gui.title('3D Model Controls');
-  gui.hide();
-  document.body.appendChild(gui.domElement);
-gui.domElement.style.display = 'none';
-  
-  // Create a toggle button for GUI visibility
-  const toggleBtn = document.createElement('button');
-  toggleBtn.id = 'gui-toggle-btn';
-  toggleBtn.textContent = 'Toggle GUI';
-  toggleBtn.classList.add('gui-toggle-button');
-  document.body.appendChild(toggleBtn);
-  
-  // toggleBtn.addEventListener('click', () => {
-  //   settings.gui.visible = !settings.gui.visible;
-  //   if (settings.gui.visible) {
-  //     gui.domElement.style.display = 'block';
-  //   } else {
-  //     gui.domElement.style.display = 'none';
-  //   }
-  // });
-  
-  // Single main folder for all controls
-  const mainFolder = gui.addFolder('All Controls');
-  mainFolder.open(); // Keep it open by default
-  
-  // Model section header
-  mainFolder.add({ 'Model Controls': true }, 'Model Controls').disable();
-  
-  // Basic rotation controls
-  mainFolder.add(settings.model, 'rotationX', -Math.PI, Math.PI, 0.01).name('Rotation X').onChange(value => {
-    model.rotation.x = value;
-  });
-  mainFolder.add(settings.model, 'rotationY', -Math.PI, Math.PI, 0.01).name('Rotation Y').onChange(value => {
-    model.rotation.y = value;
-  });
-  mainFolder.add(settings.model, 'rotationZ', -Math.PI, Math.PI, 0.01).name('Rotation Z').onChange(value => {
-    model.rotation.z = value;
-  });
-  
-  // Basic position controls
-  mainFolder.add(settings.model, 'positionX', -5, 5, 0.1).name('Position X').onChange(value => {
-    model.position.x = value;
-  });
-  mainFolder.add(settings.model, 'positionY', -5, 5, 0.1).name('Position Y').onChange(value => {
-    model.position.y = value;
-  });
-  mainFolder.add(settings.model, 'positionZ', -5, 5, 0.1).name('Position Z').onChange(value => {
-    model.position.z = value;
-  });
-  
-  // Basic scale control
-  mainFolder.add(settings.model, 'scale', 0.1, 5, 0.1).name('Scale').onChange(value => {
-    model.scale.set(value, value, value);
-  });
-  
-  // Auto rotation controls
-  mainFolder.add(settings.model, 'autoRotate').name('Enable Animation');
-  mainFolder.add(settings.model, 'autoRotateSpeed', 0.1, 2, 0.1).name('Rotation Speed');
-  
-  // Math.PI-based rotation controls
-  mainFolder.add({ 'Math.PI Rotation': true }, 'Math.PI Rotation').disable();
-  mainFolder.add(settings.model, 'piRotationX', 0, 2, 0.01).name('X (π × value)').onChange(value => {
-    model.rotation.x = value * Math.PI;
-  });
-  mainFolder.add(settings.model, 'piRotationY', 0, 2, 0.01).name('Y (π × value)').onChange(value => {
-    model.rotation.y = value * Math.PI;
-  });
-  mainFolder.add(settings.model, 'piRotationZ', 0, 2, 0.01).name('Z (π × value)').onChange(value => {
-    model.rotation.z = value * Math.PI;
-  });
+  // Function to setup GUI controls
+  function setupGUI(model, scene, camera, ambient, keyLight, fillLight, rimLight) {
+    // Create GUI instance
+    const gui = new lil.GUI();
+    gui.title('3D Model Controls');
+    gui.hide();
+    document.body.appendChild(gui.domElement);
+    gui.domElement.style.display = 'none';
 
-  mainFolder.add(settings.model, 'continuousZRotationSpeed', 0, 0.1, 0.001).name('Continuous Z Rotation Speed');
-  
-  // Camera section header
-  mainFolder.add({ 'Camera Controls': true }, 'Camera Controls').disable();
-  
-  // Camera controls
-  mainFolder.add(settings.camera, 'fov', 10, 100, 1).name('FOV').onChange(value => {
-    camera.fov = value;
-    camera.updateProjectionMatrix();
-  });
-  mainFolder.add(settings.camera, 'positionX', -50, 50, 1).name('Camera X').onChange(value => {
-    camera.position.x = value;
-  });
-  mainFolder.add(settings.camera, 'positionY', -50, 50, 1).name('Camera Y').onChange(value => {
-    camera.position.y = value;
-  });
-  mainFolder.add(settings.camera, 'positionZ', 1, 50, 1).name('Camera Z').onChange(value => {
-    camera.position.z = value;
-  });
+    // Create a toggle button for GUI visibility
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'gui-toggle-btn';
+    toggleBtn.textContent = 'Toggle GUI';
+    toggleBtn.classList.add('gui-toggle-button');
+    document.body.appendChild(toggleBtn);
 
-  mainFolder.add(settings.camera, 'rotationX', -Math.PI, Math.PI, 0.01).name('Cam Rot X (π)').onChange(value => {
-  camera.rotation.x = value * Math.PI;
-});
-mainFolder.add(settings.camera, 'rotationY', -Math.PI, Math.PI, 0.01).name('Cam Rot Y (π)').onChange(value => {
-  camera.rotation.y = value * Math.PI;
-});
-mainFolder.add(settings.camera, 'rotationZ', -Math.PI, Math.PI, 0.01).name('Cam Rot Z (π)').onChange(value => {
-  camera.rotation.z = value * Math.PI;
-});
+    // toggleBtn.addEventListener('click', () => {
+    //   settings.gui.visible = !settings.gui.visible;
+    //   if (settings.gui.visible) {
+    //     gui.domElement.style.display = 'block';
+    //   } else {
+    //     gui.domElement.style.display = 'none';
+    //   }
+    // });
 
-  
-  // Material section header
-  mainFolder.add({ 'Material Controls': true }, 'Material Controls').disable();
-  
-  // Material controls
-  mainFolder.add(settings.material, 'metalness', 0, 1, 0.01).name('Metalness').onChange(value => {
-    model.traverse((node) => {
-      if (node.isMesh && node.material) {
-        node.material.metalness = value;
-      }
+    // Single main folder for all controls
+    const mainFolder = gui.addFolder('All Controls');
+    mainFolder.open(); // Keep it open by default
+
+    // Model section header
+    mainFolder.add({ 'Model Controls': true }, 'Model Controls').disable();
+
+    // Basic rotation controls
+    mainFolder.add(settings.model, 'rotationX', -Math.PI, Math.PI, 0.01).name('Rotation X').onChange(value => {
+      model.rotation.x = value;
     });
-  });
-  mainFolder.add(settings.material, 'roughness', 0, 1, 0.01).name('Roughness').onChange(value => {
-    model.traverse((node) => {
-      if (node.isMesh && node.material) {
-        node.material.roughness = value;
-      }
+    mainFolder.add(settings.model, 'rotationY', -Math.PI, Math.PI, 0.01).name('Rotation Y').onChange(value => {
+      model.rotation.y = value;
     });
-  });
-  
-  // Lights section header
-  mainFolder.add({ 'Light Controls': true }, 'Light Controls').disable();
-  
-  // Ambient light
-  mainFolder.addColor(settings.lights.ambient, 'color').name('Ambient Color').onChange(value => {
-    ambient.color.set(value);
-  });
-  mainFolder.add(settings.lights.ambient, 'intensity', 0, 20, 0.1).name('Ambient Intensity').onChange(value => {
-    ambient.intensity = value;
-  });
-  
-  // Key light
-  mainFolder.addColor(settings.lights.key, 'color').name('Key Light Color').onChange(value => {
-    keyLight.color.set(value);
-  });
-  mainFolder.add(settings.lights.key, 'intensity', 0, 10, 0.1).name('Key Light Intensity').onChange(value => {
-    keyLight.intensity = value;
-  });
-  mainFolder.add(settings.lights.key, 'positionX', -10, 10, 0.1).name('Key Light X').onChange(value => {
-    keyLight.position.x = value;
-  });
-  mainFolder.add(settings.lights.key, 'positionY', -10, 10, 0.1).name('Key Light Y').onChange(value => {
-    keyLight.position.y = value;
-  });
-  mainFolder.add(settings.lights.key, 'positionZ', -10, 10, 0.1).name('Key Light Z').onChange(value => {
-    keyLight.position.z = value;
-  });
-  
-  // Key light rotation controls using Math.PI
-  mainFolder.add(settings.lights.key, 'piRotationX', 0, 2, 0.01).name('Key Light Rot X (π)').onChange(value => {
-    keyLight.rotation.x = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.key, 'piRotationY', 0, 2, 0.01).name('Key Light Rot Y (π)').onChange(value => {
-    keyLight.rotation.y = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.key, 'piRotationZ', 0, 2, 0.01).name('Key Light Rot Z (π)').onChange(value => {
-    keyLight.rotation.z = value * Math.PI;
-  });
-  
-  // Fill light
-  mainFolder.addColor(settings.lights.fill, 'color').name('Fill Light Color').onChange(value => {
-    fillLight.color.set(value);
-  });
-  mainFolder.add(settings.lights.fill, 'intensity', 0, 10, 0.1).name('Fill Light Intensity').onChange(value => {
-    fillLight.intensity = value;
-  });
-  mainFolder.add(settings.lights.fill, 'positionX', -10, 10, 0.1).name('Fill Light X').onChange(value => {
-    fillLight.position.x = value;
-  });
-  mainFolder.add(settings.lights.fill, 'positionY', -10, 10, 0.1).name('Fill Light Y').onChange(value => {
-    fillLight.position.y = value;
-  });
-  mainFolder.add(settings.lights.fill, 'positionZ', -10, 10, 0.1).name('Fill Light Z').onChange(value => {
-    fillLight.position.z = value;
-  });
-  
-  // Fill light rotation controls using Math.PI
-  mainFolder.add(settings.lights.fill, 'piRotationX', 0, 2, 0.01).name('Fill Light Rot X (π)').onChange(value => {
-    fillLight.rotation.x = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.fill, 'piRotationY', 0, 2, 0.01).name('Fill Light Rot Y (π)').onChange(value => {
-    fillLight.rotation.y = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.fill, 'piRotationZ', 0, 2, 0.01).name('Fill Light Rot Z (π)').onChange(value => {
-    fillLight.rotation.z = value * Math.PI;
-  });
-  
-  // Rim light
-  mainFolder.addColor(settings.lights.rim, 'color').name('Rim Light Color').onChange(value => {
-    rimLight.color.set(value);
-  });
-  mainFolder.add(settings.lights.rim, 'intensity', 0, 10, 0.1).name('Rim Light Intensity').onChange(value => {
-    rimLight.intensity = value;
-  });
-  mainFolder.add(settings.lights.rim, 'positionX', -10, 10, 0.1).name('Rim Light X').onChange(value => {
-    rimLight.position.x = value;
-  });
-  mainFolder.add(settings.lights.rim, 'positionY', -10, 10, 0.1).name('Rim Light Y').onChange(value => {
-    rimLight.position.y = value;
-  });
-  mainFolder.add(settings.lights.rim, 'positionZ', -10, 10, 0.1).name('Rim Light Z').onChange(value => {
-    rimLight.position.z = value;
-  });
+    mainFolder.add(settings.model, 'rotationZ', -Math.PI, Math.PI, 0.01).name('Rotation Z').onChange(value => {
+      model.rotation.z = value;
+    });
 
-  
-  
-  // Rim light rotation controls using Math.PI
-  mainFolder.add(settings.lights.rim, 'piRotationX', 0, 2, 0.01).name('Rim Light Rot X (π)').onChange(value => {
-    rimLight.rotation.x = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.rim, 'piRotationY', 0, 2, 0.01).name('Rim Light Rot Y (π)').onChange(value => {
-    rimLight.rotation.y = value * Math.PI;
-  });
-  mainFolder.add(settings.lights.rim, 'piRotationZ', 0, 2, 0.01).name('Rim Light Rot Z (π)').onChange(value => {
-    rimLight.rotation.z = value * Math.PI;
-  });
-  
-  return gui;
-}
+    // Basic position controls
+    mainFolder.add(settings.model, 'positionX', -5, 5, 0.1).name('Position X').onChange(value => {
+      model.position.x = value;
+    });
+    mainFolder.add(settings.model, 'positionY', -5, 5, 0.1).name('Position Y').onChange(value => {
+      model.position.y = value;
+    });
+    mainFolder.add(settings.model, 'positionZ', -5, 5, 0.1).name('Position Z').onChange(value => {
+      model.position.z = value;
+    });
 
-// === 32oz Model in Section 4 ===
-function load32ozModel() {
-  const container = document.querySelector('.model-container-32oz');
-  if (!container) return;
+    // Basic scale control
+    mainFolder.add(settings.model, 'scale', 0.1, 5, 0.1).name('Scale').onChange(value => {
+      model.scale.set(value, value, value);
+    });
 
-  // Remove any previous renderer
-  container.innerHTML = '';
+    // Auto rotation controls
+    mainFolder.add(settings.model, 'autoRotate').name('Enable Animation');
+    mainFolder.add(settings.model, 'autoRotateSpeed', 0.1, 2, 0.1).name('Rotation Speed');
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(settings.camera.fov, 1, 0.1, 100);
-  camera.position.set(settings.camera.positionX, settings.camera.positionY, settings.camera.positionZ);
-  camera.rotation.set(
-  settings.camera.rotationX * Math.PI,
-  settings.camera.rotationY * Math.PI,
-  settings.camera.rotationZ * Math.PI
-);
+    // Math.PI-based rotation controls
+    mainFolder.add({ 'Math.PI Rotation': true }, 'Math.PI Rotation').disable();
+    mainFolder.add(settings.model, 'piRotationX', 0, 2, 0.01).name('X (π × value)').onChange(value => {
+      model.rotation.x = value * Math.PI;
+    });
+    mainFolder.add(settings.model, 'piRotationY', 0, 2, 0.01).name('Y (π × value)').onChange(value => {
+      model.rotation.y = value * Math.PI;
+    });
+    mainFolder.add(settings.model, 'piRotationZ', 0, 2, 0.01).name('Z (π × value)').onChange(value => {
+      model.rotation.z = value * Math.PI;
+    });
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  // Enable sRGB tone mapping for better color
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.4;
-  renderer.outputEncoding = THREE.sRGBEncoding;
-  container.appendChild(renderer.domElement);
+    mainFolder.add(settings.model, 'continuousZRotationSpeed', 0, 0.1, 0.001).name('Continuous Z Rotation Speed');
 
-  // Lighting
-  const ambient = new THREE.AmbientLight(settings.lights.ambient.color, settings.lights.ambient.intensity);
-  scene.add(ambient);
-  
-  const keyLight = new THREE.DirectionalLight(settings.lights.key.color, settings.lights.key.intensity);
-  keyLight.position.set(settings.lights.key.positionX, settings.lights.key.positionY, settings.lights.key.positionZ);
-  scene.add(keyLight);
-  
-  const fillLight = new THREE.DirectionalLight(settings.lights.fill.color, settings.lights.fill.intensity);
-  fillLight.position.set(settings.lights.fill.positionX, settings.lights.fill.positionY, settings.lights.fill.positionZ);
-  scene.add(fillLight);
-  
-  const rimLight = new THREE.DirectionalLight(settings.lights.rim.color, settings.lights.rim.intensity);
-  rimLight.position.set(settings.lights.rim.positionX, settings.lights.rim.positionY, settings.lights.rim.positionZ);
-  scene.add(rimLight);
+    // Camera section header
+    mainFolder.add({ 'Camera Controls': true }, 'Camera Controls').disable();
 
-  const light = new THREE.PointLight(0xffffff, 1, 100, 2); // (color, intensity, distance, decay)
-light.position.set(10, 10, 10);
-scene.add(light);
+    // Camera controls
+    mainFolder.add(settings.camera, 'fov', 10, 100, 1).name('FOV').onChange(value => {
+      camera.fov = value;
+      camera.updateProjectionMatrix();
+    });
+    mainFolder.add(settings.camera, 'positionX', -50, 50, 1).name('Camera X').onChange(value => {
+      camera.position.x = value;
+    });
+    mainFolder.add(settings.camera, 'positionY', -50, 50, 1).name('Camera Y').onChange(value => {
+      camera.position.y = value;
+    });
+    mainFolder.add(settings.camera, 'positionZ', 1, 50, 1).name('Camera Z').onChange(value => {
+      camera.position.z = value;
+    });
 
-  let model32oz;
-  let modelGroup;
-  const loader = new THREE.GLTFLoader();
-  loader.load('./32oz-flashk.glb', (gltf) => {
-    model32oz = gltf.scene;
-    model32oz.traverse((node) => {
+    mainFolder.add(settings.camera, 'rotationX', -Math.PI, Math.PI, 0.01).name('Cam Rot X (π)').onChange(value => {
+      camera.rotation.x = value * Math.PI;
+    });
+    mainFolder.add(settings.camera, 'rotationY', -Math.PI, Math.PI, 0.01).name('Cam Rot Y (π)').onChange(value => {
+      camera.rotation.y = value * Math.PI;
+    });
+    mainFolder.add(settings.camera, 'rotationZ', -Math.PI, Math.PI, 0.01).name('Cam Rot Z (π)').onChange(value => {
+      camera.rotation.z = value * Math.PI;
+    });
+
+
+    // Material section header
+    mainFolder.add({ 'Material Controls': true }, 'Material Controls').disable();
+
+    // Material controls
+    mainFolder.add(settings.material, 'metalness', 0, 1, 0.01).name('Metalness').onChange(value => {
+      model.traverse((node) => {
         if (node.isMesh && node.material) {
-        node.material.metalness = settings.material.metalness;
-        node.material.roughness = settings.material.roughness;
+          node.material.metalness = value;
         }
       });
-    // Create a group to hold the model for centered rotation
-    modelGroup = new THREE.Group();
-    modelGroup.add(model32oz);
+    });
+    mainFolder.add(settings.material, 'roughness', 0, 1, 0.01).name('Roughness').onChange(value => {
+      model.traverse((node) => {
+        if (node.isMesh && node.material) {
+          node.material.roughness = value;
+        }
+      });
+    });
 
-    // Calculate bounding box to center the model
-    const bbox = new THREE.Box3().setFromObject(model32oz);
-    const center = bbox.getCenter(new THREE.Vector3());
-    model32oz.position.sub(center);
+    // Lights section header
+    mainFolder.add({ 'Light Controls': true }, 'Light Controls').disable();
 
-    // Position and rotate the group
-    modelGroup.position.set(settings.model.positionX, settings.model.positionY, settings.model.positionZ);
-    modelGroup.rotation.set(settings.model.rotationX, settings.model.rotationY, settings.model.rotationZ);
-    modelGroup.scale.set(settings.model.scale, settings.model.scale, settings.model.scale);
-    scene.add(modelGroup);
-    // Save initial rotation
-let previousRotation = model32oz.rotation.y;
+    // Ambient light
+    mainFolder.addColor(settings.lights.ambient, 'color').name('Ambient Color').onChange(value => {
+      ambient.color.set(value);
+    });
+    mainFolder.add(settings.lights.ambient, 'intensity', 0, 20, 0.1).name('Ambient Intensity').onChange(value => {
+      ambient.intensity = value;
+    });
 
-ScrollTrigger.create({
-  trigger: ".section4",
-  start: "top bottom",   // when top of section4 hits bottom of viewport
-  end: "bottom top",     // when bottom of section4 hits top of viewport
-  scrub: true, // ensures smooth scroll tracking
-  onUpdate: (self) => {
-    if (!model32oz) return;
+    // Key light
+    mainFolder.addColor(settings.lights.key, 'color').name('Key Light Color').onChange(value => {
+      keyLight.color.set(value);
+    });
+    mainFolder.add(settings.lights.key, 'intensity', 0, 10, 0.1).name('Key Light Intensity').onChange(value => {
+      keyLight.intensity = value;
+    });
+    mainFolder.add(settings.lights.key, 'positionX', -10, 10, 0.1).name('Key Light X').onChange(value => {
+      keyLight.position.x = value;
+    });
+    mainFolder.add(settings.lights.key, 'positionY', -10, 10, 0.1).name('Key Light Y').onChange(value => {
+      keyLight.position.y = value;
+    });
+    mainFolder.add(settings.lights.key, 'positionZ', -10, 10, 0.1).name('Key Light Z').onChange(value => {
+      keyLight.position.z = value;
+    });
 
-    const progress = self.progress; // value between 0 and 1
-    const targetRotation = progress * (Math.PI); // 0 to 90°
+    // Key light rotation controls using Math.PI
+    mainFolder.add(settings.lights.key, 'piRotationX', 0, 2, 0.01).name('Key Light Rot X (π)').onChange(value => {
+      keyLight.rotation.x = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.key, 'piRotationY', 0, 2, 0.01).name('Key Light Rot Y (π)').onChange(value => {
+      keyLight.rotation.y = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.key, 'piRotationZ', 0, 2, 0.01).name('Key Light Rot Z (π)').onChange(value => {
+      keyLight.rotation.z = value * Math.PI;
+    });
 
-    // Optional smooth easing
-    gsap.to(model32oz.rotation, {
-      y: targetRotation,
-      duration: 1,
-      ease: "power2.out"
+    // Fill light
+    mainFolder.addColor(settings.lights.fill, 'color').name('Fill Light Color').onChange(value => {
+      fillLight.color.set(value);
+    });
+    mainFolder.add(settings.lights.fill, 'intensity', 0, 10, 0.1).name('Fill Light Intensity').onChange(value => {
+      fillLight.intensity = value;
+    });
+    mainFolder.add(settings.lights.fill, 'positionX', -10, 10, 0.1).name('Fill Light X').onChange(value => {
+      fillLight.position.x = value;
+    });
+    mainFolder.add(settings.lights.fill, 'positionY', -10, 10, 0.1).name('Fill Light Y').onChange(value => {
+      fillLight.position.y = value;
+    });
+    mainFolder.add(settings.lights.fill, 'positionZ', -10, 10, 0.1).name('Fill Light Z').onChange(value => {
+      fillLight.position.z = value;
+    });
+
+    // Fill light rotation controls using Math.PI
+    mainFolder.add(settings.lights.fill, 'piRotationX', 0, 2, 0.01).name('Fill Light Rot X (π)').onChange(value => {
+      fillLight.rotation.x = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.fill, 'piRotationY', 0, 2, 0.01).name('Fill Light Rot Y (π)').onChange(value => {
+      fillLight.rotation.y = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.fill, 'piRotationZ', 0, 2, 0.01).name('Fill Light Rot Z (π)').onChange(value => {
+      fillLight.rotation.z = value * Math.PI;
+    });
+
+    // Rim light
+    mainFolder.addColor(settings.lights.rim, 'color').name('Rim Light Color').onChange(value => {
+      rimLight.color.set(value);
+    });
+    mainFolder.add(settings.lights.rim, 'intensity', 0, 10, 0.1).name('Rim Light Intensity').onChange(value => {
+      rimLight.intensity = value;
+    });
+    mainFolder.add(settings.lights.rim, 'positionX', -10, 10, 0.1).name('Rim Light X').onChange(value => {
+      rimLight.position.x = value;
+    });
+    mainFolder.add(settings.lights.rim, 'positionY', -10, 10, 0.1).name('Rim Light Y').onChange(value => {
+      rimLight.position.y = value;
+    });
+    mainFolder.add(settings.lights.rim, 'positionZ', -10, 10, 0.1).name('Rim Light Z').onChange(value => {
+      rimLight.position.z = value;
+    });
+
+
+
+    // Rim light rotation controls using Math.PI
+    mainFolder.add(settings.lights.rim, 'piRotationX', 0, 2, 0.01).name('Rim Light Rot X (π)').onChange(value => {
+      rimLight.rotation.x = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.rim, 'piRotationY', 0, 2, 0.01).name('Rim Light Rot Y (π)').onChange(value => {
+      rimLight.rotation.y = value * Math.PI;
+    });
+    mainFolder.add(settings.lights.rim, 'piRotationZ', 0, 2, 0.01).name('Rim Light Rot Z (π)').onChange(value => {
+      rimLight.rotation.z = value * Math.PI;
+    });
+
+    return gui;
+  }
+
+  // === 32oz Model in Section 4 ===
+  function load32ozModel() {
+    const container = document.querySelector('.model-container-32oz');
+    if (!container) return;
+
+    // Remove any previous renderer
+    container.innerHTML = '';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(settings.camera.fov, 1, 0.1, 100);
+    camera.position.set(settings.camera.positionX, settings.camera.positionY, settings.camera.positionZ);
+    camera.rotation.set(
+      settings.camera.rotationX * Math.PI,
+      settings.camera.rotationY * Math.PI,
+      settings.camera.rotationZ * Math.PI
+    );
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0);
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    // Enable sRGB tone mapping for better color
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.4;
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    container.appendChild(renderer.domElement);
+
+    // Lighting
+    const ambient = new THREE.AmbientLight(settings.lights.ambient.color, settings.lights.ambient.intensity);
+    scene.add(ambient);
+
+    const keyLight = new THREE.DirectionalLight(settings.lights.key.color, settings.lights.key.intensity);
+    keyLight.position.set(settings.lights.key.positionX, settings.lights.key.positionY, settings.lights.key.positionZ);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(settings.lights.fill.color, settings.lights.fill.intensity);
+    fillLight.position.set(settings.lights.fill.positionX, settings.lights.fill.positionY, settings.lights.fill.positionZ);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(settings.lights.rim.color, settings.lights.rim.intensity);
+    rimLight.position.set(settings.lights.rim.positionX, settings.lights.rim.positionY, settings.lights.rim.positionZ);
+    scene.add(rimLight);
+
+    const light = new THREE.PointLight(0xffffff, 1, 100, 2); // (color, intensity, distance, decay)
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    let model32oz;
+    let modelGroup;
+    const loader = new THREE.GLTFLoader();
+    loader.load('./32oz-flashk.glb', (gltf) => {
+      model32oz = gltf.scene;
+      model32oz.traverse((node) => {
+        if (node.isMesh && node.material) {
+          node.material.metalness = settings.material.metalness;
+          node.material.roughness = settings.material.roughness;
+        }
+      });
+      // Create a group to hold the model for centered rotation
+      modelGroup = new THREE.Group();
+      modelGroup.add(model32oz);
+
+      // Calculate bounding box to center the model
+      const bbox = new THREE.Box3().setFromObject(model32oz);
+      const center = bbox.getCenter(new THREE.Vector3());
+      model32oz.position.sub(center);
+
+      // Position and rotate the group
+      modelGroup.position.set(settings.model.positionX, settings.model.positionY, settings.model.positionZ);
+      modelGroup.rotation.set(settings.model.rotationX, settings.model.rotationY, settings.model.rotationZ);
+      modelGroup.scale.set(settings.model.scale, settings.model.scale, settings.model.scale);
+      scene.add(modelGroup);
+      // Save initial rotation
+      let previousRotation = model32oz.rotation.y;
+
+      ScrollTrigger.create({
+        trigger: ".section4",
+        start: "top bottom",   // when top of section4 hits bottom of viewport
+        end: "bottom top",     // when bottom of section4 hits top of viewport
+        scrub: true, // ensures smooth scroll tracking
+        onUpdate: (self) => {
+          if (!model32oz) return;
+
+          const progress = self.progress; // value between 0 and 1
+          const targetRotation = progress * (Math.PI); // 0 to 90°
+
+          // Optional smooth easing
+          gsap.to(model32oz.rotation, {
+            y: targetRotation,
+            duration: 1,
+            ease: "power2.out"
+          });
+        }
+      });
+
+      // Setup GUI after model is loaded
+      const gui = setupGUI(modelGroup, scene, camera, ambient, keyLight, fillLight, rimLight);
+
+      // Fade in
+      renderer.domElement.style.opacity = 0;
+      renderer.domElement.style.transition = 'opacity 1s';
+      setTimeout(() => { renderer.domElement.style.opacity = 1; }, 100);
+      // animate();
+    });
+
+    // Add time variable for sinusoidal animation
+    let time = 0;
+
+
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+    animate(); // Call this once at the end
+
+
+    // Responsive
+    window.addEventListener('resize', () => {
+      const size = Math.min(container.clientWidth, container.clientHeight);
+      renderer.setSize(size, size);
+      camera.aspect = 1;
+      camera.updateProjectionMatrix();
     });
   }
-});
-    
-    // Setup GUI after model is loaded
-    const gui = setupGUI(modelGroup, scene, camera, ambient, keyLight, fillLight, rimLight);
-    
-    // Fade in
-    renderer.domElement.style.opacity = 0;
-    renderer.domElement.style.transition = 'opacity 1s';
-    setTimeout(() => { renderer.domElement.style.opacity = 1; }, 100);
-    // animate();
-  });
 
-  // Add time variable for sinusoidal animation
-  let time = 0;
-  
-  
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
+  // Load the model when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load32ozModel);
+  } else {
+    load32ozModel();
+  }
 }
-animate(); // Call this once at the end
-
-
-  // Responsive
-  window.addEventListener('resize', () => {
-    const size = Math.min(container.clientWidth, container.clientHeight);
-    renderer.setSize(size, size);
-    camera.aspect = 1;
-    camera.updateProjectionMatrix();
-  });
-}
-
-// Load the model when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', load32ozModel);
-} else {
-  load32ozModel();
-}
-}
-  

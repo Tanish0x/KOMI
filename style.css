@@ -636,6 +636,10 @@ svg {
   padding: 40px;
 }
 
+.section5 img {
+  transform: translate(-50%, -50%);
+}
+
 .section5 h1 {
   position: relative;
   font-size: 18rem;
@@ -697,17 +701,17 @@ svg {
 }
 
 .section6 .main-title {
-     font-size: 8rem;
-    font-weight: 500;
-    color: #000;
-    display: inline;
-    position: absolute;
-    line-height: 0.85;
-    bottom: 19%;
-    left: 3%;
-    letter-spacing: -3px;
-    align-self: end;
-    margin-top: auto;
+  font-size: 8rem;
+  font-weight: 500;
+  color: #000;
+  display: inline;
+  position: absolute;
+  line-height: 0.85;
+  bottom: 19%;
+  left: 3%;
+  letter-spacing: -3px;
+  align-self: end;
+  margin-top: auto;
 }
 
 .section6 .text-block {
@@ -737,233 +741,235 @@ svg {
 }
 
 .container {
-            /* max-width: 1400px; */
-            margin: 0 auto;
-            padding: 20px;
-        }
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  padding: 20px;
+}
 
-        .products-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            padding: 2rem 0;
-        }
+.products-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
 
-        .product-card {
-            background-color: #1a1a1a;
-    /* border-radius: 1rem; */
-    padding: 2rem;
-    /* height: 600px; */
-    width: 30vw;
-    display: flex
-;
+.product-card {
+  background-color: #1a1a1a;
+  /* border-radius: 1rem; */
+  padding: 2rem;
+  /* height: 600px; */
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.products-grid {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.product-info h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.scientific-name {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.benefit {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #fff;
+}
+
+.product-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 2rem 0; */
+}
+
+.bottle {
+  width: 120px;
+  height: 300px;
+  border-radius: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottle.valerian {
+  background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
+}
+
+.bottle.passiflora {
+  background: linear-gradient(180deg, #9370db 0%, #6a5acd 100%);
+}
+
+.bottle.ashwagandha {
+  background: linear-gradient(180deg, #ffa07a 0%, #ff7f50 100%);
+}
+
+.bottle-cap {
+  width: 40px;
+  height: 30px;
+  background-color: #333;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.bottle-cap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: #666;
+  border-radius: 50%;
+}
+
+.bottle-label {
+  color: #333;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.bottle-text {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.target-state,
+.impact {
+  font-size: 0.875rem;
+}
+
+.target-state span,
+.impact span {
+  color: #fff;
+  font-weight: 500;
+}
+
+.target-state,
+.impact {
+  color: #666;
+}
+
+.nav-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.nav-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1200px) {
+  .products-wrapper {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-wrapper {
     flex-direction: column;
-    position: relative;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-        }
+    align-items: center;
+    gap: 1.5rem;
+  }
 
-        .products-grid{
-          display: flex;
-          justify-content: space-evenly;
-        }
+  .product-card {
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+    padding: 1.5rem;
+  }
 
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-        }
+  .product-info h2 {
+    font-size: 2rem;
+  }
 
-        .product-info h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
+  .bottle {
+    width: 100px;
+    height: 250px;
+  }
+}
 
-        .scientific-name {
-            font-size: 0.875rem;
-            color: #666;
-            font-weight: 400;
-        }
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
 
-        .benefit {
-            font-size: 1.125rem;
-            font-weight: 300;
-            color: #fff;
-        }
+  .product-card {
+    width: 100%;
+    height: 450px;
+    padding: 1rem;
+  }
 
-        .product-image {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* margin: 2rem 0; */
-        }
+  .product-info h2 {
+    font-size: 1.75rem;
+  }
 
-        .bottle {
-            width: 120px;
-            height: 300px;
-            border-radius: 2rem;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+  .bottle {
+    width: 80px;
+    height: 200px;
+  }
 
-        .bottle.valerian {
-            background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
-        }
-
-        .bottle.passiflora {
-            background: linear-gradient(180deg, #9370db 0%, #6a5acd 100%);
-        }
-
-        .bottle.ashwagandha {
-            background: linear-gradient(180deg, #ffa07a 0%, #ff7f50 100%);
-        }
-
-        .bottle-cap {
-            width: 40px;
-            height: 30px;
-            background-color: #333;
-            border-radius: 0.5rem 0.5rem 0 0;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .bottle-cap::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background-color: #666;
-            border-radius: 50%;
-        }
-
-        .bottle-label {
-            color: #333;
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .bottle-text {
-            color: #333;
-            font-weight: 700;
-            font-size: 1.5rem;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .target-state, .impact {
-            font-size: 0.875rem;
-        }
-
-        .target-state span, .impact span {
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .target-state, .impact {
-            color: #666;
-        }
-
-        .nav-arrow {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .nav-arrow:hover {
-            background-color: #333;
-            color: #fff;
-        }
-
-        .nav-arrow svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 1200px) {
-            .products-wrapper {
-                justify-content: space-around;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .products-wrapper {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
-            
-            .product-card {
-                width: 100%;
-                max-width: 350px;
-                height: 500px;
-                padding: 1.5rem;
-            }
-            
-            .product-info h2 {
-                font-size: 2rem;
-            }
-            
-            .bottle {
-                width: 100px;
-                height: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .product-card {
-                width: 100%;
-                height: 450px;
-                padding: 1rem;
-            }
-            
-            .product-info h2 {
-                font-size: 1.75rem;
-            }
-            
-            .bottle {
-                width: 80px;
-                height: 200px;
-            }
-            
-            .bottle-text {
-                font-size: 1.25rem;
-            }
-        }
+  .bottle-text {
+    font-size: 1.25rem;
+  }
+}
 
 @media (max-width: 1024px) {
   .section6 {
@@ -1013,34 +1019,51 @@ svg {
   }
 }
 
-.section7{
+.section7 {
   width: 100vw;
   height: 100vh;
 }
 
-.sec1{
+.sec1 {
   font-size: 7rem;
-    width: 84rem;
-    font-weight: 500;
-    line-height: 6rem;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-68%, -50%);
+  width: 79rem;
+  font-weight: 500;
+  line-height: 6rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-68%, -50%);
 }
 
-.section7 .sec1 .char {
-  color: #bbb;
-  transition: color 0.3s;
+.sec1 .char {
   display: inline-block;
+  color: rgb(167, 167, 167); /* initial color */
+  transition: color 0.3s;
   opacity: 1;
 }
 
-.section8{
+.section8 {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
 }
 
+.section8 h1{
+  font-size: 10vw;
+  font-weight: 500;
+  text-align: center;
+  line-height: 11rem;
+  color: #bbb;
+}
+
+.sec2 .char{
+  color: #bbb;
+  transition: color 0.3s;
+  opacity: 1;
+}
 
 /* Smooth scrolling styles */
 html.lenis {
